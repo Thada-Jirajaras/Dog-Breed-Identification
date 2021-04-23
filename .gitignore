@@ -1,0 +1,10 @@
+.ipynb_checkpoints
+__pycache__
+data
+dogImages
+lfw
+myimages
+workspace_utils.py
+dog_app-original.ipynb
+model_transfer.pt
+CapstoneReportTemplate.md
