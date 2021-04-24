@@ -231,16 +231,13 @@ In this section, the final model and any supporting qualities should be evaluate
 - _Can results found from the model be trusted?
 
 ```
-Test Loss: 0.515817
 
-
-Test Accuracy: 82% (690/836)
 ```
 
-| ![image-20210424202911720](C:\Users\OOKBee U\AppData\Roaming\Typora\typora-user-images\image-20210424202911720.png) | ![image-20210424202931443](C:\Users\OOKBee U\AppData\Roaming\Typora\typora-user-images\image-20210424202931443.png) |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![image-20210424203002706](C:\Users\OOKBee U\AppData\Roaming\Typora\typora-user-images\image-20210424203002706.png) | ![image-20210424203040139](C:\Users\OOKBee U\AppData\Roaming\Typora\typora-user-images\image-20210424203040139.png) |
-| ![image-20210424203019752](C:\Users\OOKBee U\AppData\Roaming\Typora\typora-user-images\image-20210424203019752.png) | ![image-20210424203100187](C:\Users\OOKBee U\AppData\Roaming\Typora\typora-user-images\image-20210424203100187.png) |
+|      |      |
+| ---- | ---- |
+|      |      |
+|      |      |
 
 
 
