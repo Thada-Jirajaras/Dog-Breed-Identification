@@ -8,3 +8,5 @@ workspace_utils.py
 dog_app-original.ipynb
 model_transfer.pt
 CapstoneReportTemplate.md
+temp.ipynb
+model_refinement.pt
