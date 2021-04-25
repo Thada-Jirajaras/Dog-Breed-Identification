@@ -22,11 +22,11 @@ Accuracy is the acceptable and selected metric because classes are not extremely
 Dog dataset: (https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/dogImages.zip) This is the main dataset for developing a CNN model to identify dog breeds. The dataset contains dog images with 133 breed labels. The dataset consist of training (6680 images), validation (835 images), and test (836 images) sets
 Random chance presents an exceptionally low bar: setting aside the fact that the classes are slightly imabalanced, a random guess will provide a correct answer roughly 1 in 133 times, which corresponds to an accuracy of less than 1%.
 
-![train_distribution](\resultimages\train_distribution.jpg)
+![train_distribution](./resultimages/train_distribution.jpg)
 
-![valid_distribution](\resultimages\valid_distribution.jpg)
+![valid_distribution](./resultimages/valid_distribution.jpg)
 
-![test_distribution](\resultimages\test_distribution.jpg)
+![test_distribution](./resultimages/test_distribution.jpg)
 
 ### Exploratory Visualization
 
@@ -146,9 +146,9 @@ Available at: <https://pytorch.org/vision/stable/models.html> [Accessed 20 April
 <https://www.anolytics.ai/blog/top-data-labeling-challenges-faced-by-annotation-companies/>
 [Accessed 20 April 2021].
 4. Medium. 2021. Dog Breed Classifier using CNN. [online] Available at:
-  <https://medium.com/@maanavshah/dog-breed-classifier-using-cnn-f480612ac27a>
-  [Accessed 20 April 2021].
+    <https://medium.com/@maanavshah/dog-breed-classifier-using-cnn-f480612ac27a>
+    [Accessed 20 April 2021].
 5. Medium. 2021. Deep Learning: Build a dog detector and breed classifier using CNN. [online] Available at:
-  <https://towardsdatascience.com/deep-learning-build-a-dog-detector-and-breed-classifier-usi
-  ng-cnn-f6ea2e5d954a> [Accessed 20 April 2021].
+    <https://towardsdatascience.com/deep-learning-build-a-dog-detector-and-breed-classifier-usi
+    ng-cnn-f6ea2e5d954a> [Accessed 20 April 2021].
 6. Ayanzadeh, Aydin & Vahidnia, Sahand. (2018). Modified Deep Neural Networks for Dog Breeds Identification.
