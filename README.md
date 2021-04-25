@@ -6,9 +6,9 @@ May 31st, 2021
 
 ## I. Definition
 ### Project Overview
-Nowaday, AI and computer vision play an important role in detecting objects [1]. There are many models pretrained with a big dataset for this task. For example, there are models that can identify objects in the ImageNet dataset which have 1000 classes [2].
+Nowadays, AI and computer vision play an important role in detecting objects [1]. There are many models pretrained with a big dataset for this task. For example, there are models that can identify objects in the ImageNet dataset which have 1000 classes [2].
 
-Howevers, there are limitations that these pretrained models can identify only the classes that appear in the trained dataset. For example, in order to specifically identify unseen classes like some dog breeds, the models need to be newly created. Also, there may be situations where there are only a few dog images that have the breed labels because it requires a lot of effort to label images [3]. Thus, the model must use only a few images to train.
+However, there are limitations that these pretrained models can identify only the classes that appear in the trained dataset. For example, in order to specifically identify unseen classes like some dog breeds, the models need to be newly created. Also, there may be situations where there are only a few dog images that have the breed labels because it requires a lot of effort to label images [3]. Thus, the model must use only a few images to train.
 
 ### Problem Statement
 With only a few dog images with breed labels, it is challenging to create a model that does not overfit the training set and give high accuracy on the test set.
@@ -22,7 +22,7 @@ Accuracy is the acceptable and selected metric because classes are not extremely
 Dog dataset: (https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/dogImages.zip) This is the main dataset for developing a CNN model to identify dog breeds. The dataset contains dog images with 133 breed labels. The dataset consist of training (6680 images), validation (835 images), and test (836 images) sets
 Random chance presents an exceptionally low bar: setting aside the fact that the classes are slightly imabalanced, a random guess will provide a correct answer roughly 1 in 133 times, which corresponds to an accuracy of less than 1%.
 
-![train_distribution](./resultimages/train_distribution.jpg)
+<img src="./resultimages/train_distribution.jpg" alt="train_distribution"  />
 
 ![valid_distribution](./resultimages/valid_distribution.jpg)
 
@@ -32,9 +32,9 @@ Random chance presents an exceptionally low bar: setting aside the fact that the
 
 Assigning breed to dogs from images is considered exceptionally challenging. To see why, consider that *even a human* would have trouble distinguishing between a Brittany and a Welsh Springer Spaniel.
 
-|                  **Brittany**                  |                  **Welsh Springer Spaniel**                  |
-| :--------------------------------------------: | :----------------------------------------------------------: |
-| ![Brittany_02625](./images/Brittany_02625.jpg) | ![Welsh_springer_spaniel_08203](./images/Welsh_springer_spaniel_08203.jpg) |
+|                         **Brittany**                         |                  **Welsh Springer Spaniel**                  |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="./images/Brittany_02625.jpg" alt="Brittany_02625" style="zoom:33%;" /> | <img src="./images/Welsh_springer_spaniel_08203.jpg" alt="Welsh_springer_spaniel_08203" style="zoom:50%;" /> |
 
 
 
@@ -42,13 +42,13 @@ It is not difficult to find other dog breed pairs with minimal inter-class varia
 
 |                  **Curly-Coated Retriever**                  |                  **American Water Spaniel**                  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![Curly-coated_retriever_03896](./images/Curly-coated_retriever_03896.jpg) | ![American_water_spaniel_00648](./images/American_water_spaniel_00648.jpg) |
+| <img src="./images/Curly-coated_retriever_03896.jpg" alt="Curly-coated_retriever_03896" style="zoom: 33%;" /> | <img src="./images/American_water_spaniel_00648.jpg" alt="American_water_spaniel_00648" style="zoom:50%;" /> |
 
 Likewise, recall that labradors come in yellow, chocolate, and black. Your vision-based algorithm will have to conquer this high intra-class variation to determine how to classify all of these different shades as the same breed.
 
 |                       Yellow Labrador                        |                      Chocolate Labrador                      |                        Black Labrador                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![Labrador_retriever_06457](./images/Labrador_retriever_06457.jpg) | ![Labrador_retriever_06455](./images/Labrador_retriever_06455.jpg) | ![Labrador_retriever_06449](./images/Labrador_retriever_06449.jpg) |
+| <img src="./images/Labrador_retriever_06457.jpg" alt="Labrador_retriever_06457" style="zoom:50%;" /> | <img src="./images/Labrador_retriever_06455.jpg" alt="Labrador_retriever_06455" style="zoom:50%;" /> | <img src="./images/Labrador_retriever_06449.jpg" alt="Labrador_retriever_06449" style="zoom: 50%;" /> |
 
 
 
@@ -65,8 +65,6 @@ There are some works that use the same datasets to create and test the models [4
 | ResNet-50    | 82%  | 18.41                                                       |
 | Inception v3 | 81%  | 31.83                                                       |
 | Xception     | 85%  | 49.07                                                       |
-
-
 
 
 ## III. Methodology
@@ -108,7 +106,157 @@ After 25 epochs of refinement training, the best model with lowest loss in valid
 
 ## IV. Results
 ### Model Evaluation and Validation
-The best model provide the 86% of the accuracy in test set.Justification
+The best model provide the 86% of the accuracy in test set.
+
+```
+ 										precision    recall  f1-score   support
+
+                     001.Affenpinscher       1.00      0.88      0.93         8
+                      002.Afghan_hound       1.00      1.00      1.00         8
+                  003.Airedale_terrier       0.86      1.00      0.92         6
+                             004.Akita       1.00      0.88      0.93         8
+                  005.Alaskan_malamute       0.83      1.00      0.91        10
+               006.American_eskimo_dog       1.00      1.00      1.00         8
+                 007.American_foxhound       0.75      0.86      0.80         7
+    008.American_staffordshire_terrier       0.89      1.00      0.94         8
+            009.American_water_spaniel       0.67      0.50      0.57         4
+            010.Anatolian_shepherd_dog       0.83      0.83      0.83         6
+             011.Australian_cattle_dog       1.00      0.89      0.94         9
+               012.Australian_shepherd       0.90      1.00      0.95         9
+                013.Australian_terrier       1.00      0.83      0.91         6
+                           014.Basenji       0.82      1.00      0.90         9
+                      015.Basset_hound       1.00      1.00      1.00        10
+                            016.Beagle       0.83      0.62      0.71         8
+                    017.Bearded_collie       0.70      0.88      0.78         8
+                         018.Beauceron       1.00      1.00      1.00         7
+                019.Bedlington_terrier       1.00      1.00      1.00         6
+                  020.Belgian_malinois       0.78      0.88      0.82         8
+                  021.Belgian_sheepdog       1.00      1.00      1.00         8
+                  022.Belgian_tervuren       1.00      1.00      1.00         6
+              023.Bernese_mountain_dog       1.00      1.00      1.00         8
+                      024.Bichon_frise       1.00      1.00      1.00         8
+           025.Black_and_tan_coonhound       1.00      1.00      1.00         4
+             026.Black_russian_terrier       0.80      0.80      0.80         5
+                        027.Bloodhound       1.00      1.00      1.00         8
+                028.Bluetick_coonhound       1.00      1.00      1.00         4
+                     029.Border_collie       1.00      1.00      1.00        10
+                    030.Border_terrier       1.00      0.86      0.92         7
+                            031.Borzoi       1.00      0.86      0.92         7
+                    032.Boston_terrier       1.00      1.00      1.00         8
+              033.Bouvier_des_flandres       0.80      0.80      0.80         5
+                             034.Boxer       1.00      0.88      0.93         8
+                    035.Boykin_spaniel       1.00      1.00      1.00         6
+                            036.Briard       1.00      1.00      1.00         8
+                          037.Brittany       1.00      0.67      0.80         6
+                  038.Brussels_griffon       0.88      1.00      0.93         7
+                      039.Bull_terrier       1.00      1.00      1.00         9
+                           040.Bulldog       1.00      1.00      1.00         7
+                       041.Bullmastiff       0.73      0.89      0.80         9
+                     042.Cairn_terrier       1.00      0.88      0.93         8
+                        043.Canaan_dog       0.75      1.00      0.86         6
+                        044.Cane_corso       0.83      0.62      0.71         8
+              045.Cardigan_welsh_corgi       0.67      0.86      0.75         7
+     046.Cavalier_king_charles_spaniel       0.75      0.67      0.71         9
+          047.Chesapeake_bay_retriever       0.88      1.00      0.93         7
+                         048.Chihuahua       1.00      0.71      0.83         7
+                   049.Chinese_crested       0.75      1.00      0.86         6
+                  050.Chinese_shar-pei       1.00      1.00      1.00         6
+                         051.Chow_chow       1.00      0.88      0.93         8
+                   052.Clumber_spaniel       1.00      1.00      1.00         6
+                    053.Cocker_spaniel       0.71      0.83      0.77         6
+                            054.Collie       1.00      0.86      0.92         7
+            055.Curly-coated_retriever       0.88      1.00      0.93         7
+                         056.Dachshund       0.73      0.89      0.80         9
+                         057.Dalmatian       1.00      1.00      1.00         9
+            058.Dandie_dinmont_terrier       1.00      0.86      0.92         7
+                 059.Doberman_pinscher       0.83      0.83      0.83         6
+                 060.Dogue_de_bordeaux       1.00      1.00      1.00         8
+            061.English_cocker_spaniel       0.80      0.50      0.62         8
+                    062.English_setter       1.00      0.83      0.91         6
+          063.English_springer_spaniel       0.75      0.86      0.80         7
+               064.English_toy_spaniel       0.50      0.60      0.55         5
+          065.Entlebucher_mountain_dog       0.83      1.00      0.91         5
+                     066.Field_spaniel       1.00      0.75      0.86         4
+                     067.Finnish_spitz       1.00      0.50      0.67         4
+             068.Flat-coated_retriever       1.00      0.88      0.93         8
+                    069.French_bulldog       1.00      1.00      1.00         7
+                   070.German_pinscher       0.71      0.83      0.77         6
+               071.German_shepherd_dog       1.00      1.00      1.00         8
+        072.German_shorthaired_pointer       0.50      0.50      0.50         6
+         073.German_wirehaired_pointer       1.00      0.20      0.33         5
+                   074.Giant_schnauzer       0.67      0.80      0.73         5
+             075.Glen_of_imaal_terrier       0.67      0.80      0.73         5
+                  076.Golden_retriever       0.80      1.00      0.89         8
+                     077.Gordon_setter       0.62      1.00      0.77         5
+                        078.Great_dane       1.00      0.60      0.75         5
+                    079.Great_pyrenees       0.78      0.88      0.82         8
+        080.Greater_swiss_mountain_dog       1.00      0.80      0.89         5
+                         081.Greyhound       0.86      0.86      0.86         7
+                          082.Havanese       0.50      0.62      0.56         8
+                      083.Ibizan_hound       1.00      1.00      1.00         6
+                084.Icelandic_sheepdog       0.57      0.67      0.62         6
+        085.Irish_red_and_white_setter       0.50      0.75      0.60         4
+                      086.Irish_setter       1.00      0.86      0.92         7
+                     087.Irish_terrier       1.00      0.88      0.93         8
+               088.Irish_water_spaniel       0.71      0.83      0.77         6
+                   089.Irish_wolfhound       1.00      0.71      0.83         7
+                 090.Italian_greyhound       0.89      1.00      0.94         8
+                     091.Japanese_chin       0.88      1.00      0.93         7
+                          092.Keeshond       1.00      1.00      1.00         5
+                093.Kerry_blue_terrier       1.00      0.75      0.86         4
+                          094.Komondor       1.00      1.00      1.00         5
+                            095.Kuvasz       0.80      0.67      0.73         6
+                096.Labrador_retriever       0.57      0.80      0.67         5
+                  097.Lakeland_terrier       1.00      0.67      0.80         6
+                        098.Leonberger       1.00      1.00      1.00         5
+                        099.Lhasa_apso       0.75      0.60      0.67         5
+                           100.Lowchen       0.50      0.25      0.33         4
+                           101.Maltese       0.75      0.50      0.60         6
+                102.Manchester_terrier       1.00      1.00      1.00         3
+                           103.Mastiff       0.71      0.71      0.71         7
+               104.Miniature_schnauzer       0.83      1.00      0.91         5
+                105.Neapolitan_mastiff       0.80      1.00      0.89         4
+                      106.Newfoundland       0.75      1.00      0.86         6
+                   107.Norfolk_terrier       0.75      1.00      0.86         6
+                  108.Norwegian_buhund       0.67      0.67      0.67         3
+                109.Norwegian_elkhound       1.00      0.80      0.89         5
+               110.Norwegian_lundehund       1.00      0.75      0.86         4
+                   111.Norwich_terrier       0.71      1.00      0.83         5
+112.Nova_scotia_duck_tolling_retriever       1.00      1.00      1.00         7
+              113.Old_english_sheepdog       0.75      0.60      0.67         5
+                        114.Otterhound       1.00      0.75      0.86         4
+                          115.Papillon       1.00      0.88      0.93         8
+            116.Parson_russell_terrier       1.00      1.00      1.00         4
+                         117.Pekingese       1.00      1.00      1.00         6
+              118.Pembroke_welsh_corgi       0.80      0.57      0.67         7
+      119.Petit_basset_griffon_vendeen       1.00      1.00      1.00         4
+                     120.Pharaoh_hound       1.00      1.00      1.00         5
+                             121.Plott       1.00      0.67      0.80         3
+                           122.Pointer       0.29      0.50      0.36         4
+                        123.Pomeranian       0.67      0.80      0.73         5
+                            124.Poodle       1.00      0.83      0.91         6
+              125.Portuguese_water_dog       0.60      0.75      0.67         4
+                     126.Saint_bernard       1.00      1.00      1.00         3
+                     127.Silky_terrier       0.75      0.60      0.67         5
+                128.Smooth_fox_terrier       1.00      0.50      0.67         4
+                   129.Tibetan_mastiff       1.00      0.67      0.80         6
+            130.Welsh_springer_spaniel       0.75      0.60      0.67         5
+       131.Wirehaired_pointing_griffon       0.50      1.00      0.67         3
+                    132.Xoloitzcuintli       1.00      1.00      1.00         3
+                 133.Yorkshire_terrier       0.60      0.75      0.67         4
+
+                           avg / total       0.88      0.86      0.86       836
+```
+
+One obvious reason of wrong prediction is the similarity between breeds. For example, some Lakeland_terrier sample is predicted as Airedale_terrier by the model.
+
+<img src="./resultimages/wrong_classification.jpg" alt="wrong_classification" style="zoom: 150%;" />
+
+
+
+
+
+### Justification
 
 The ResNet-50 model after refinement give higher accuracy (86%) than the accuracy  of ResNet-50 (82%) and the accuracy of Xception (85%) provided in the benchmark section. However, if more advance learning rate policy is applied, the model may provide even higher accuracy [4].
 
@@ -122,8 +270,6 @@ Dog-breed identification can be a part of some application. For example, the app
 | :------------------------------: | :----------------------------------: |
 | ![dog2](./resultimages/dog2.jpg) | ![human2](./resultimages/human2.jpg) |
 | ![dog3](./resultimages/dog3.jpg) | ![human3](./resultimages/human3.jpg) |
-
-### 
 
 ### Reflection
 - Setting "Shuffle = True" in the data loader for the train set is very important.  If we set Shuffle = False, it is possible that the samples in the same batch contains only one class or only a few classes and cause model to not be able to learn much from that batch.

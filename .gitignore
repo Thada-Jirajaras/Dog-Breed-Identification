@@ -10,3 +10,4 @@ model_transfer.pt
 CapstoneReportTemplate.md
 temp.ipynb
 model_refinement.pt
+eval.ipynb
