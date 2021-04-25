@@ -32,23 +32,23 @@ Random chance presents an exceptionally low bar: setting aside the fact that the
 
 Assigning breed to dogs from images is considered exceptionally challenging. To see why, consider that *even a human* would have trouble distinguishing between a Brittany and a Welsh Springer Spaniel.
 
-|                 **Brittany**                  |                  **Welsh Springer Spaniel**                  |
-| :-------------------------------------------: | :----------------------------------------------------------: |
-| ![Brittany_02625](\images\Brittany_02625.jpg) | ![Welsh_springer_spaniel_08203](\images\Welsh_springer_spaniel_08203.jpg) |
+|                  **Brittany**                  |                  **Welsh Springer Spaniel**                  |
+| :--------------------------------------------: | :----------------------------------------------------------: |
+| ![Brittany_02625](./images/Brittany_02625.jpg) | ![Welsh_springer_spaniel_08203](./images/Welsh_springer_spaniel_08203.jpg) |
 
 
 
-It is not difficult to find other dog breed pairs with minimal inter-class variation (for instance, Curly-Coated Retrievers and American Water Spaniels).
+It is not difficult to find other dog breed pairs with minimal inter-class variation (for instance, Curly-Coated Retrievers and American Water Spaniels). 
 
 |                  **Curly-Coated Retriever**                  |                  **American Water Spaniel**                  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![Curly-coated_retriever_03896](\images\Curly-coated_retriever_03896.jpg) | ![American_water_spaniel_00648](\images\American_water_spaniel_00648.jpg) |
+| ![Curly-coated_retriever_03896](./images/Curly-coated_retriever_03896.jpg) | ![American_water_spaniel_00648](./images/American_water_spaniel_00648.jpg) |
 
 Likewise, recall that labradors come in yellow, chocolate, and black. Your vision-based algorithm will have to conquer this high intra-class variation to determine how to classify all of these different shades as the same breed.
 
 |                       Yellow Labrador                        |                      Chocolate Labrador                      |                        Black Labrador                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![Labrador_retriever_06457](\images\Labrador_retriever_06457.jpg) | ![Labrador_retriever_06455](\images\Labrador_retriever_06455.jpg) | ![Labrador_retriever_06449](\images\Labrador_retriever_06449.jpg) |
+| ![Labrador_retriever_06457](./images/Labrador_retriever_06457.jpg) | ![Labrador_retriever_06455](./images/Labrador_retriever_06455.jpg) | ![Labrador_retriever_06449](./images/Labrador_retriever_06449.jpg) |
 
 
 
@@ -118,10 +118,10 @@ Transfer learning can help identification problems that have only a few image sa
 
 Dog-breed identification can be a part of some application. For example, the application can accepts a file path to an image and first determines whether the image contains a human, dog, or neither based on  Haar feature-based cascade classifiers to detect human faces and pretrain VGG16 to detect dogs. Then, if a dog is detected in the image, dog-breed identification can be used to return the predicted breed. if a human is detected in the image, return the resembling dog breed. if neither is detected in the image, provide output that indicates an error. Some results of this application are shown as follows.
 
-| ![dog1](\resultimages\dog1.jpg) | ![human1](\resultimages\human1.jpg) |
-| :-----------------------------: | :---------------------------------: |
-| ![dog2](\resultimages\dog2.jpg) | ![human2](\resultimages\human2.jpg) |
-| ![dog3](\resultimages\dog3.jpg) | ![human3](\resultimages\human3.jpg) |
+| ![dog1](./resultimages/dog1.jpg) | ![human1](./resultimages/human1.jpg) |
+| :------------------------------: | :----------------------------------: |
+| ![dog2](./resultimages/dog2.jpg) | ![human2](./resultimages/human2.jpg) |
+| ![dog3](./resultimages/dog3.jpg) | ![human3](./resultimages/human3.jpg) |
 
 ### 
 
