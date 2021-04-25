@@ -1,5 +1,3 @@
-!!!!This report is just the template and still in development process. To see some codes and description please look at **"dog_app.ipynb"**
-
 ## Using Convolutional Neural Networks to Identify Dog Breeds
 Thada Jirajaras  
 May 31st, 2021
@@ -14,13 +12,12 @@ However, there are limitations that these pretrained models can identify only th
 With only a few dog images with breed labels, it is challenging to create a model that does not overfit the training set and give high accuracy on the test set.
 
 ### Metrics
-Accuracy is the acceptable and selected metric because classes are not extremely unbalanced.
+Accuracy is the acceptable and selected metric because classes are not extremely unbalanced. However, one may also look at precision and recall of each classes to see performance of each class separately.
 
 
 ## II. Analysis
 ### Data Exploration
-Dog dataset: (https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/dogImages.zip) This is the main dataset for developing a CNN model to identify dog breeds. The dataset contains dog images with 133 breed labels. The dataset consist of training (6680 images), validation (835 images), and test (836 images) sets
-Random chance presents an exceptionally low bar: setting aside the fact that the classes are slightly imabalanced, a random guess will provide a correct answer roughly 1 in 133 times, which corresponds to an accuracy of less than 1%.
+Dog dataset: (https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/dogImages.zip) This is the main dataset for developing a CNN model to identify dog breeds. The dataset contains dog images with 133 breed labels. The dataset consist of training (6680 images), validation (835 images), and test (836 images) sets. The classes are just  slightly imbalanced. 
 
 <img src="./resultimages/train_distribution.jpg" alt="train_distribution"  />
 
@@ -30,7 +27,9 @@ Random chance presents an exceptionally low bar: setting aside the fact that the
 
 ### Exploratory Visualization
 
-Assigning breed to dogs from images is considered exceptionally challenging. To see why, consider that *even a human* would have trouble distinguishing between a Brittany and a Welsh Springer Spaniel.
+The feature required for training the model is the image itself. Due to the nature of deep learning models that will be used in this project, the features will be extracted automatically  by the models. Images just need some preprocessing steps such as resize, flip, and a little rotation to have correct format and have variety of inputs for the models.
+
+However, there is some challenge to assign breed to dogs if the dogs look very similar to each other. For example, distinguishing between a Brittany and a Welsh Springer Spaniel is hard even by a human.
 
 |                         **Brittany**                         |                  **Welsh Springer Spaniel**                  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
@@ -38,19 +37,19 @@ Assigning breed to dogs from images is considered exceptionally challenging. To 
 
 
 
-It is not difficult to find other dog breed pairs with minimal inter-class variation (for instance, Curly-Coated Retrievers and American Water Spaniels). 
+Curly-Coated Retrievers and American Water Spaniels also look similar. 
 
 |                  **Curly-Coated Retriever**                  |                  **American Water Spaniel**                  |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | <img src="./images/Curly-coated_retriever_03896.jpg" alt="Curly-coated_retriever_03896" style="zoom: 33%;" /> | <img src="./images/American_water_spaniel_00648.jpg" alt="American_water_spaniel_00648" style="zoom:50%;" /> |
 
-Likewise, recall that labradors come in yellow, chocolate, and black. Your vision-based algorithm will have to conquer this high intra-class variation to determine how to classify all of these different shades as the same breed.
+Likewise, some dogs have more than one color such as Labradors. The can be yellow, chocolate, and black. Thus, the model need to consider both shape and color.
 
 |                       Yellow Labrador                        |                      Chocolate Labrador                      |                        Black Labrador                        |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | <img src="./images/Labrador_retriever_06457.jpg" alt="Labrador_retriever_06457" style="zoom:50%;" /> | <img src="./images/Labrador_retriever_06455.jpg" alt="Labrador_retriever_06455" style="zoom:50%;" /> | <img src="./images/Labrador_retriever_06449.jpg" alt="Labrador_retriever_06449" style="zoom: 50%;" /> |
 
-
+ 
 
 ### Algorithms and Techniques
 
@@ -71,42 +70,42 @@ There are some works that use the same datasets to create and test the models [4
 ### Data Preprocessing
 #### Image transformations for training set
 
-1. transforms.Resize((244, 244))
-2. transforms.RandomHorizontalFlip()
-3. transforms.RandomRotation(10),
-4. transforms.ToTensor()
-5. transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) 
+1. Resize an image to have size (244, 244)
+2. Random flip the image horizontally 
+3. Apply small rotation in the range -10 to 10 degree to the image
+4. Convert the image to the tensor that is the data type for the model
+5. Normalize images to have the mean =[0.485, 0.456, 0.406] and std = [0.229, 0.224, 0.225] so that the model can learn from the image easier
 
 #### Image transformations for evaluation and test sets
 
-1. transforms.Resize((244, 244))
-2. transforms.ToTensor()
-3. transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+1. Resize an image to have size (244, 244)
+2. Convert the image to the tensor that is the data type for the model
+3. Normalize images to have the mean =[0.485, 0.456, 0.406] and std = [0.229, 0.224, 0.225] so that the test image has the same mean and std as the trained ones.
 
 ### Implementation
 
-ImageNet50 are chosen as a pretrained model. The way to use transferred model with the new dataset is to freeze all feature layers and only allow classification layer to be trained. The steps are as follows.
+ResNet-50 from torchvision.models are chosen as a pretrained model. The strong point of this model is that it can avoid vanishing gradient even for quite deep model architectures. The way to use transferred model with the new dataset is to freeze all feature layers and only allow classification layer to be trained. The steps are as follows.
 
-1. Load the pretrained model "restnet50" for the ImageNet dataset from torchvision
+1. Load the pretrained model "ResNet-50 " for the ImageNet dataset from torchvision
 2. Freeze all features layers not to be trained
 3. Create new classification layer to have the number of output nodes equal to the number of dog breeds which is 133
 4. Train the parameters of the classification layer
 
-After 19 epochs of refinement training, the best model with lowest loss in validation set provides 82% of accuracy  in the test set.  Later iterations give insignificant improvement in the validation loss. Thus, some hyperparameter may be changed before continue training the model.  One possible parameter that can affect the training performance after training for some epochs and need to be adapted is the learning rate.
+After 19 epochs of training, the best model with lowest loss in validation set provides 82% of accuracy  in the test set.  Later iterations give insignificant improvement in the validation loss. Thus, some hyperparameter may be changed before continue training the model.  One possible parameter that can affect the training performance after training for some epochs is the learning rate.  Eventually, model will require lower learning rate to converge to the lower training loss.
 
 ### Refinement
 
 Model refinement is made by reducing the learning rate from 0.001 to 0.0001. The steps are as follows. 
 
 1. Load the best trained model 
-2. Continue training with lower learning rate (lr = 0.0001)
+2. Continue training with lower learning rate (lr = 0.0001) for 25 epochs
 
-After 25 epochs of refinement training, the best model with lowest loss in validation set provides 86% of accuracy  in the test set. The accuracy increases 4% from the model without refinement
+After 25 epochs of refinement training, the best model with lowest loss in validation set provides 86% of accuracy  in the test set. The accuracy increases 4% from the model without refinement.
 
 
 ## IV. Results
 ### Model Evaluation and Validation
-The best model provide the 86% of the accuracy in test set.
+The best model provide the 86% of the accuracy in test set.  There are 720 correct identification samples  from the total 836 samples in the test set. Precision and recall for each classes are also reported as follows.
 
 ```
  										precision    recall  f1-score   support
@@ -264,6 +263,8 @@ The ResNet-50 model after refinement give higher accuracy (86%) than the accurac
 ## V. Conclusion
 Transfer learning can help identification problems that have only a few image samples to train the new model. In this project, the transferred model provides high accuracy (86%) in the test set.   
 
+### Example of using the dog breed identification as a part of an aplication
+
 Dog-breed identification can be a part of some application. For example, the application can accepts a file path to an image and first determines whether the image contains a human, dog, or neither based on  Haar feature-based cascade classifiers to detect human faces and pretrain VGG16 to detect dogs. Then, if a dog is detected in the image, dog-breed identification can be used to return the predicted breed. if a human is detected in the image, return the resembling dog breed. if neither is detected in the image, provide output that indicates an error. Some results of this application are shown as follows.
 
 | ![dog1](./resultimages/dog1.jpg) | ![human1](./resultimages/human1.jpg) |
@@ -272,11 +273,14 @@ Dog-breed identification can be a part of some application. For example, the app
 | ![dog3](./resultimages/dog3.jpg) | ![human3](./resultimages/human3.jpg) |
 
 ### Reflection
+
+There are some pitfalls that ones may face. The problem may look very simple but it can take your time to solve if you do not realize it.
+
 - Setting "Shuffle = True" in the data loader for the train set is very important.  If we set Shuffle = False, it is possible that the samples in the same batch contains only one class or only a few classes and cause model to not be able to learn much from that batch.
 - Even though, some acceptable results are met, we may be able to improve the performance of the result further by adjusting only one parameter or only a few parameters. For example, after the model can achieve 82% of the accuracy it can be improved more by only reducing the learning rate parameter and continuing training.
 
 ### Improvement
-To improve the result, these factors may need to explored further
+To improve the result, these factors may need to explored further. 
 
 - Learning rate policies
 - Pretrained model architectures  
