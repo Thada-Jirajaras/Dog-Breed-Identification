@@ -76,6 +76,8 @@ There are some works that use the same datasets to create and test the models [4
 4. Convert the image to the tensor that is the data type for the model
 5. Normalize images to have the mean =[0.485, 0.456, 0.406] and std = [0.229, 0.224, 0.225] so that the model can learn from the image easier
 
+Random flip  and rotation provide variety to the training sets and can help model to avoid overfitting issue. 
+
 #### Image transformations for evaluation and test sets
 
 1. Resize an image to have size (244, 244)
